@@ -1,0 +1,23 @@
+name: Build LaTeX
+on: [push]
+jobs:
+  job_build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: compile
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: report.tex
+          working_directory: ./report
+          compiler: pdflatex
+          args: |
+            -shell-escape
+
+      - name: publish
+        uses: actions/upload-artifact@v3
+        with:
+          name: report
+          path: ./report/report.pdf

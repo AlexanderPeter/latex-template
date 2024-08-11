@@ -1,0 +1,20 @@
+stages:
+  - general_stage
+
+report_job:
+  stage: general_stage
+  only:
+    changes:
+      - "report/**/*"
+  image: registry.gitlab.com/islandoftex/images/texlive:latest
+  script:
+    - cd report
+    - ls -la /usr/local/texlive
+    - echo "shell_escape = t" >> /usr/local/texlive/2023/texmf.cnf
+    - pdflatex report
+    - biber report
+    - pdflatex report
+    - pdflatex report
+  artifacts:
+    paths:
+      - report/report.pdf

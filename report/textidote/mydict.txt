@@ -1,0 +1,10 @@
+Rotkreuz
+tableofcontents
+makeglossaries
+clearpage
+arabic
+printglossary
+acronymtype
+listoffigures
+listoftables
+hslu
